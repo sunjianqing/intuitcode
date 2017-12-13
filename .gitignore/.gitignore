@@ -1,0 +1,16 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.iml
+# Intellij folder
+.idea/
+*.iml
+*.iws
+
+# Maven
+log/
+target/
+/.idea/uiDesigner.xml
