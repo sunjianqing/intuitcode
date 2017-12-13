@@ -1,5 +1,9 @@
 package com.jianqing.intuit;
 
+import com.jianqing.intuit.controller.MyController;
+import com.jianqing.intuit.model.Request;
+import com.jianqing.intuit.view.ClientType;
+
 /**
  * Created by jianqing_sun on 12/6/17.
  */
@@ -8,27 +12,27 @@ public class IntuitMain {
 
         System.out.println("App Starts");
 
-        Controller controller = Controller.getInstance();
+        MyController myController = MyController.getInstance();
 
         // create user1 note 1 from web
         Request request = new Request(ClientType.WEB, "u1,n1,t1,n1 context");
-        String resp = controller.createNote(request);
+        String resp = myController.createNote(request);
         System.out.println(resp);
 
         // create user1 note 2 from mobile
         request = new Request(ClientType.Android, "u1,n2,t2,n2 context");
-        resp = controller.createNote(request);
+        resp = myController.createNote(request);
         System.out.println(resp);
 
         // create user2 note 3 from web
         request = new Request(ClientType.WEB, "u2,n3,t3,n3 context");
-        resp = controller.createNote(request);
+        resp = myController.createNote(request);
         System.out.println(resp);
 
         // update note 1
         try {
             request = new Request(ClientType.WEB, "n1,n1 new context");
-            resp = controller.updateNote(request);
+            resp = myController.updateNote(request);
             System.out.println(resp);
         } catch (Exception e) {
             System.err.println("Note update failed." + e.getMessage());
@@ -37,7 +41,7 @@ public class IntuitMain {
         // get all user1 notes
         try {
             request = new Request(ClientType.WEB,"u1" );
-            resp = controller.getNotesByUser(request);
+            resp = myController.getNotesByUser(request);
             System.out.println(resp);
         } catch (Exception e) {
             System.err.println("Note fetch failed" + e.getMessage());

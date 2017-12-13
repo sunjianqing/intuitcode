@@ -1,4 +1,12 @@
-package com.jianqing.intuit;
+package com.jianqing.intuit.controller;
+
+import com.jianqing.intuit.model.Entity;
+import com.jianqing.intuit.model.GenericDAO;
+import com.jianqing.intuit.model.Note;
+import com.jianqing.intuit.model.Request;
+import com.jianqing.intuit.view.AndriodView;
+import com.jianqing.intuit.view.BrowserView;
+import com.jianqing.intuit.view.ClientType;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -6,17 +14,17 @@ import java.util.List;
 /**
  * Created by jianqing_sun on 12/6/17.
  */
-public class Controller {
+public class MyController {
 
-    private static Controller instance;
+    private static MyController instance;
     private GenericDAO genericDAO;
-    private Controller(){
+    private MyController(){
         this.genericDAO = new GenericDAO();
     }
 
-    public static synchronized Controller getInstance(){
+    public static synchronized MyController getInstance(){
         if(instance == null){
-            instance = new Controller();
+            instance = new MyController();
         }
 
         return instance;

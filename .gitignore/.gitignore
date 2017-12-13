@@ -25,6 +25,7 @@ target/
 .idea/workspace.xml
 .idea/vcs.xml
 .idea/modules.xml
+.idea/libraries/*.xml
 build.gradle
 build/
 gradle/

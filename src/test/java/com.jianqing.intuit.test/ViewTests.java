@@ -1,6 +1,6 @@
 package com.jianqing.intuit.test;
 
-import com.jianqing.intuit.AndriodView;
+import com.jianqing.intuit.view.AndriodView;
 import org.junit.Assert;
 import org.junit.Test;
 

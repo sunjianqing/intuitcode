@@ -1,4 +1,4 @@
-package com.jianqing.intuit;
+package com.jianqing.intuit.model;
 
 import java.util.Date;
 

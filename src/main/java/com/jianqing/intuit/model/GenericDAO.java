@@ -1,4 +1,4 @@
-package com.jianqing.intuit;
+package com.jianqing.intuit.model;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

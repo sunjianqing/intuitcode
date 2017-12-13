@@ -1,4 +1,4 @@
-package com.jianqing.intuit;
+package com.jianqing.intuit.view;
 
 /**
  * Created by jianqing_sun on 12/6/17.
