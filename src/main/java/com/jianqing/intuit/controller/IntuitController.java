@@ -63,13 +63,13 @@ public class IntuitController {
         noteIds.add(noteService.insert(note2));
         noteIds.add(noteService.insert(note3));
 
-        return buildResponse(ClientType.Default, StringUtils.join(noteIds, "\n"));
+        return buildResponse(ClientType.Default, "Create notes:\n"+ StringUtils.join(noteIds, "\n"));
     }
 
     @RequestMapping(value = "/reset")
     public String reset(){
         noteService.reset();
-        return "reset";
+        return "reset database";
     }
 
     @RequestMapping(value = "/findByNoteId", method = GET, produces = "application/json; charset=UTF-8")
@@ -91,7 +91,7 @@ public class IntuitController {
         note.setLastupdateTime(Calendar.getInstance().getTime());
 
         noteService.update(note);
-        return text;
+        return "update text:\n"+text;
     }
 
     @RequestMapping(value = "/web", method = GET)
