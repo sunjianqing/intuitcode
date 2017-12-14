@@ -40,7 +40,6 @@ dependencies {
 
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
 
-    compile("org.hibernate:hibernate-entitymanager:5.2.9.Final")
     compile('com.h2database:h2')
 
 
