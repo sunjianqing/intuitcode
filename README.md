@@ -1,8 +1,8 @@
-This project is used Spring framework building a sample web application which has embedded web server and memory database.
+This project is used Spring framework building a sample web application which has embedded web server and memory H2 database.
 # How to build
 Make sure you have gradle installed on your local
 ```
-_./gradlew clean build_ 
+_./gradlew clean build
 ```
 # How to run
 After building, please run
