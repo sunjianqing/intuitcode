@@ -1,18 +1,21 @@
 package com.jianqing.intuit.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * Created by jianqing_sun on 12/6/17.
  */
-public class Note extends Entity{
-    private String userId;
+@Entity
+public class Note extends BaseEntity {
+
+    @Id
     private String noteId;
+    private String userId;
     private String text;
     private String title;
-    private Date creationTime;
     private Date lastupdateTime;
-    private String comments;
     private String version;
 
     public String getUserId() {
@@ -47,28 +50,12 @@ public class Note extends Entity{
         this.title = title;
     }
 
-    public Date getCreationTime() {
-        return creationTime;
-    }
-
-    public void setCreationTime(Date creationTime) {
-        this.creationTime = creationTime;
-    }
-
     public Date getLastupdateTime() {
         return lastupdateTime;
     }
 
     public void setLastupdateTime(Date lastupdateTime) {
         this.lastupdateTime = lastupdateTime;
-    }
-
-    public String getComments() {
-        return comments;
-    }
-
-    public void setComments(String comments) {
-        this.comments = comments;
     }
 
     public String getVersion() {

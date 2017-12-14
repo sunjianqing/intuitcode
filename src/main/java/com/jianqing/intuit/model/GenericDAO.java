@@ -16,30 +16,30 @@ public class GenericDAO {
     //@Inject
     //private EntityManager entityManager;
 
-    public Map<String, Entity> map = new HashMap<>();
+    public Map<String, BaseEntity> map = new HashMap<>();
 
-    public Entity save(Entity entity) {
+    public BaseEntity save(BaseEntity entity) {
         map.put(entity.getPK(),entity);
         return entity;
     }
 
-    public Entity find(String pk) {
+    public BaseEntity find(String pk) {
        return map.get(pk);
     }
 
-    public void delete(Entity entity){
+    public void delete(BaseEntity entity){
         map.remove(entity.getPK());
     }
 
-    public Entity update(Entity entity){
+    public BaseEntity update(BaseEntity entity){
         map.put(entity.getPK(), entity);
         return entity;
     }
 
-    public List<Entity> findByProperty(Class clazz, String propertyName, Object value) throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
-        List<Entity> res = new ArrayList<>();
-        for(Map.Entry<String, Entity> entry : map.entrySet()){
-            Entity entity = entry.getValue();
+    public List<BaseEntity> findByProperty(Class clazz, String propertyName, Object value) throws ClassNotFoundException, InvocationTargetException, IllegalAccessException {
+        List<BaseEntity> res = new ArrayList<>();
+        for(Map.Entry<String, BaseEntity> entry : map.entrySet()){
+            BaseEntity entity = entry.getValue();
             Method[] methods = Class.forName(clazz.getCanonicalName()).getMethods();
             for(Method m: methods){
                 if(m.getName().equals("get"+propertyName)){

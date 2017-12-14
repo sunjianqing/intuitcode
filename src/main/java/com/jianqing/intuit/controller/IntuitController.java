@@ -1,19 +1,46 @@
 package com.jianqing.intuit.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import com.jianqing.intuit.model.Note;
+import com.jianqing.intuit.model.NoteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.sql.DataSource;
 
 /**
  * Created by jianqingsun on 12/13/17.
  */
-@Controller
+@RestController
 public class IntuitController {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
-    public String sayHelloAgain(ModelMap model) {
-        model.addAttribute("pageTitle","Welcome to my Awesome Dynamic Application");
-        return "index";
+    @Autowired
+    DataSource dataSource;
+
+    @Autowired
+    NoteRepository noteRepository;
+
+    @RequestMapping("/greeting")
+    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+        model.addAttribute("name", name);
+        return "greeting";
     }
+
+    @RequestMapping(value = "/test")
+    public String test(){
+        for (Note note : noteRepository.findAll()) {
+            System.out.println(note.getNoteId());
+        }
+
+        return " hello world";
+    }
+
+    @RequestMapping("/")
+    public String index() {
+
+        return "Greetings from Spring Boot!";
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.jianqing.intuit.controller;
 
-import com.jianqing.intuit.model.Entity;
+import com.jianqing.intuit.model.BaseEntity;
 import com.jianqing.intuit.model.GenericDAO;
 import com.jianqing.intuit.model.Note;
 import com.jianqing.intuit.model.Request;
@@ -48,7 +48,7 @@ public class MyController {
         String[] info = request.body.split(",");
         String noteId = info[0];
 
-        List<Entity> notes = genericDAO.findByProperty(Note.class, "NoteId", noteId);
+        List<BaseEntity> notes = genericDAO.findByProperty(Note.class, "NoteId", noteId);
 
         Note note = (Note)notes.get(0);
 
@@ -64,11 +64,11 @@ public class MyController {
 
         String userId = request.body;
 
-        List<Entity> notes = genericDAO.findByProperty(Note.class, "UserId", userId);
+        List<BaseEntity> notes = genericDAO.findByProperty(Note.class, "UserId", userId);
 
         StringBuilder sb = new StringBuilder();
 
-        for(Entity entity: notes){
+        for(BaseEntity entity: notes){
             Note note = (Note)entity;
             sb.append(note.getNoteId() + ":" + note.getTitle()+ ":"+ note.getText());
             sb.append("\n");
