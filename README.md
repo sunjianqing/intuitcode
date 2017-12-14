@@ -11,7 +11,7 @@ After building, please run
 ```
 to start application
 
-## Try some command from browser
+## Try some commands from browser
 ```
 http://localhost:8080/init
 http://localhost:8080/update?nid=1&text=helloworld
