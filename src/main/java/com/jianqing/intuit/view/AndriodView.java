@@ -1,7 +1,7 @@
 package com.jianqing.intuit.view;
 
 /**
- * Created by jianqing_sun on 12/6/17.
+ * Created by jianqing_sun on 12/13/17.
  */
 public class AndriodView implements View {
 

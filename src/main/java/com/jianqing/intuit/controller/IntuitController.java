@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -49,12 +50,18 @@ public class IntuitController {
         Note note2 = new Note();
         note2.setNoteId(2l);
         note2.setUserId(1l);
-        note.setTitle("note 2 title");
-        note.setText("note 2 text");
+        note2.setTitle("note 2 title");
+        note2.setText("note 2 text");
 
+        Note note3 = new Note();
+        note3.setNoteId(3l);
+        note3.setUserId(2l);
+        note3.setTitle("note 3 title");
+        note3.setText("note 3 text");
 
         noteIds.add(noteService.insert(note));
         noteIds.add(noteService.insert(note2));
+        noteIds.add(noteService.insert(note3));
 
         return buildResponse(ClientType.Default, StringUtils.join(noteIds, "\n"));
     }
@@ -65,37 +72,41 @@ public class IntuitController {
         return "reset";
     }
 
-    @RequestMapping(value = "/findByNoteId", method = GET)
+    @RequestMapping(value = "/findByNoteId", method = GET, produces = "application/json; charset=UTF-8")
     public Note findByNoteId(@RequestParam("nid") long uid){
         Note note = noteService.find(uid);
         return note;
     }
 
-    @RequestMapping(value = "/findByUserId", method = GET)
-    public String findByUserId(@RequestParam("uid") long uid){
-
+    @RequestMapping(value = "/findByUserId", method = GET, produces = "application/json; charset=UTF-8")
+    public List<Note> findByUserId(@RequestParam("uid") long uid){
         List<Note> notes = noteService.findWithUserId(uid);
-        for(Note n : notes){
-            System.out.println(n.getNoteId());
-        }
-        return " hello world";
+        return notes;
     }
 
     @RequestMapping(value = "/update", method = GET)
-    public String updateByUserNote(@RequestParam("nid") long nid, @RequestParam("text") String text){
-
+    public String updateByUserNote(@RequestParam("nid") long nid, @RequestParam("text") String text) throws UnsupportedEncodingException {
         Note note = noteService.find(nid);
         note.setText(text);
         note.setLastupdateTime(Calendar.getInstance().getTime());
 
         noteService.update(note);
-        return " hello world";
+        return text;
+    }
+
+    @RequestMapping(value = "/web", method = GET)
+    public String web(@RequestParam("text") String text ) {
+        return buildResponse(ClientType.WEB, text);
+    }
+
+    @RequestMapping(value = "/android", method = GET)
+    public String android(@RequestParam("text") String text ) {
+        return buildResponse(ClientType.Android, text);
     }
 
     @RequestMapping("/")
     public String index() {
-
-        return "Greetings from Spring Boot!";
+        return "Hello INTUIT!";
     }
 
     private String buildResponse(ClientType type, String response){

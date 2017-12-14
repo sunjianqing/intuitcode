@@ -16,7 +16,7 @@ public class Note {
     private String text;
     private String title;
     private Date lastupdateTime;
-    private String version;
+    private int version = 0;
 
     public long getUserId() {
         return userId;
@@ -58,11 +58,11 @@ public class Note {
         this.lastupdateTime = lastupdateTime;
     }
 
-    public String getVersion() {
+    public int getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(int version) {
         this.version = version;
     }
 

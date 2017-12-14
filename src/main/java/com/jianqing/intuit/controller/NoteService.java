@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jianqingsun on 12/13/17.
@@ -16,6 +18,9 @@ import java.util.List;
 @Repository
 @Transactional
 public class NoteService {
+
+    Map<Long, Note> cache = new HashMap<>();
+
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -27,10 +32,15 @@ public class NoteService {
     public void reset() {
         String tableName = "Note";
         entityManager.createNativeQuery("TRUNCATE TABLE " + tableName).executeUpdate();
+        cache.clear();
         return;
     }
 
     public Note find(long id) {
+        // check cache
+        if (cache.containsKey(id)) {
+            return cache.get(id);
+        }
         return entityManager.find(Note.class, id);
     }
 
@@ -48,9 +58,15 @@ public class NoteService {
     }
 
     public void update(Note note) {
+        // update cache
+        int v = note.getVersion();
+        note.setVersion(v + 1);
+        if (cache.containsKey(note.getNoteId())) {
+            cache.put(note.getNoteId(), note);
+        }
+
         entityManager.merge(note);
         return;
     }
-
 
 }
