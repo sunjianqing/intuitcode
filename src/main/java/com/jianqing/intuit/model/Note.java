@@ -8,29 +8,29 @@ import java.util.Date;
  * Created by jianqing_sun on 12/6/17.
  */
 @Entity
-public class Note extends BaseEntity {
+public class Note {
 
     @Id
-    private String noteId;
-    private String userId;
+    private long noteId;
+    private long userId;
     private String text;
     private String title;
     private Date lastupdateTime;
     private String version;
 
-    public String getUserId() {
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 
-    public String getNoteId() {
+    public long getNoteId() {
         return noteId;
     }
 
-    public void setNoteId(String noteId) {
+    public void setNoteId(long noteId) {
         this.noteId = noteId;
     }
 
@@ -66,8 +66,4 @@ public class Note extends BaseEntity {
         this.version = version;
     }
 
-    @Override
-    String getPK() {
-        return userId+noteId;
-    }
 }
