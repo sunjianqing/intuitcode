@@ -24,8 +24,13 @@ public class NoteService {
         return note.getNoteId();
     }
 
-    public Note find(long id) {
+    public void reset() {
+        String tableName = "Note";
+        entityManager.createNativeQuery("TRUNCATE TABLE " + tableName).executeUpdate();
+        return;
+    }
 
+    public Note find(long id) {
         return entityManager.find(Note.class, id);
     }
 
@@ -42,7 +47,7 @@ public class NoteService {
                 .getResultList();
     }
 
-    public void update(Note note){
+    public void update(Note note) {
         entityManager.merge(note);
         return;
     }
