@@ -16,6 +16,7 @@ to start application
 http://localhost:8080/init
 http://localhost:8080/update?nid=1&text=helloworld
 http://localhost:8080/findByUserId?uid=1
+http://localhost:8080/findByNoteId?nid=1
 http://localhost:8080/reset
 
 ```
